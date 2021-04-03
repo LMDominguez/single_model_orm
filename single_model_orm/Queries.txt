@@ -1,0 +1,36 @@
+PYTHON SHELL QUERIES ($ python manage.py shell)
+
+Import the model:
+from users_app.models import *
+
+Create 3 new users:
+User.objects.create(first_name="Gandalf",last_name="The Gray",email_address="balrogslayer89@sauronsucks.com",age=7000)
+User.objects.create(first_name="Leonardo",last_name="Decaprio",email_address="dreamerman@inception.com",age=7000)
+User.objects.create(first_name="Luke",last_name="Skywalker",email_address="x_wingman@realrebelalliance.net",age=19)
+
+Retrieve all the users:
+User.objects.all()
+
+Retrieve the last user:
+User.objects.last()
+
+Retrieve the first user:
+User.objects.first()
+
+Change the user with id=3 so their last name is Pancakes:
+update_user = User.objects.get(id=3)
+update_user.last_name = "Pancakes"
+update_user.save()
+print(f"The last name of User ({update_user.id}) has been changed to {update_user.last_name}")
+
+Delete the user with id=2:
+delete_user = User.objects.get(id=2)
+delete_user.delete()
+print(f"Now that you have removed user {delete_user.id} , your new list is...")
+User.objects.all()
+
+Get all the users, sorted by first name:
+User.objects.all().order_by("first_name")
+
+Get all the users, sorted by first name, descending order:
+User.objects.all().order_by("-first_name")
